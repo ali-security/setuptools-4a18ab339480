@@ -1,25 +1,12 @@
 name: automerge
+# Automerge is an upstream-repo convenience that needs a GITHUB_TOKEN with write
+# access; on the build fork it would only fire unbidden on every sync push.
 on:
-  pull_request:
-    types:
-      - labeled
-      - unlabeled
-      - synchronize
-      - opened
-      - edited
-      - ready_for_review
-      - reopened
-      - unlocked
-  pull_request_review:
-    types:
-      - submitted
-  check_suite:
-    types:
-      - completed
-  status: {}
+  workflow_dispatch: {}
 jobs:
   automerge:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: automerge
         uses: "pascalgn/automerge-action@v0.12.0"
